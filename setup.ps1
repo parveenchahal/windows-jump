@@ -6,14 +6,19 @@ if ([bool](([System.Security.Principal.WindowsIdentity]::GetCurrent()).groups -m
 
 $osDisk = "C:"
 $windowsJumpDir = $osDisk + "\windows-jump"
+$jumpMapPath = $windowsJumpDir + "\jumpmap"
+
 if((Test-Path $windowsJumpDir) -eq $false) {
     mkdir $windowsJumpDir
 }
 
 cp j.bat $windowsJumpDir
 cp jp.ps1 $windowsJumpDir
-cp jumpmap $windowsJumpDir
+
+if((Test-Path $jumpMapPath) -eq $false) {
+    cp jumpmap $windowsJumpDir
+}
 
 $path = (Get-ChildItem Env:Path).Value + "$windowsJumpDir;"
-[System.Environment]::SetEnvironmentVariable("Jump_Map", ($windowsJumpDir + "\jumpmap"), [System.EnvironmentVariableTarget]::Machine)
+[System.Environment]::SetEnvironmentVariable("Jump_Map", $jumpMapPath, [System.EnvironmentVariableTarget]::Machine)
 [System.Environment]::SetEnvironmentVariable("Path", $path, [System.EnvironmentVariableTarget]::Machine)
