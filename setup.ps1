@@ -1,6 +1,7 @@
 $currentLocation = (Get-Location).Path
 if ([bool](([System.Security.Principal.WindowsIdentity]::GetCurrent()).groups -match "S-1-5-32-544") -eq $false) {
-    Start-Process powershell.exe "cd '$currentLocation';.\install.ps1" -Verb RunAs
+    Start-Process powershell.exe "cd '$currentLocation';.\setup.ps1" -Verb RunAs
+    return
 }
 
 $osDisk = "C:"
