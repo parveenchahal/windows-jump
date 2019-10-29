@@ -4,7 +4,7 @@ if ([bool](([System.Security.Principal.WindowsIdentity]::GetCurrent()).groups -m
     exit
 }
 
-$osDisk = (Get-WmiObject -Class Win32_logicaldisk).DeviceID
+$osDisk = "C:"
 $windowsJumpDir = $osDisk + "\windows-jump"
 if((Test-Path $windowsJumpDir) -eq $false) {
     mkdir $windowsJumpDir
