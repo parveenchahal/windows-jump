@@ -10,5 +10,4 @@ exit /b
 
 :navigate
 cd %1
-SET found = 1
 exit /b
