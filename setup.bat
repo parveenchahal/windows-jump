@@ -1,1 +1,1 @@
-powershell.exe ".\setup.ps1"
+powershell.exe ".\configure.ps1"
