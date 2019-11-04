@@ -4,7 +4,7 @@ if ([bool](([System.Security.Principal.WindowsIdentity]::GetCurrent()).groups -m
     return
 }
 
-$osDisk = "C:"
+$osDisk = (Get-ChildItem Env:SystemDrive).Value
 $windowsJumpDir = $osDisk + "\windows-jump"
 $jumpMapPath = $windowsJumpDir + "\jumpmap"
 
