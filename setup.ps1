@@ -19,6 +19,12 @@ if((Test-Path $jumpMapPath) -eq $false) {
     cp jumpmap $windowsJumpDir
 }
 
-$path = (Get-ChildItem Env:Path).Value + "$windowsJumpDir;"
+$path = (Get-ChildItem Env:Path).Value
+if($path.EndsWith(";") -eq $true) {
+    $path = $path + "$windowsJumpDir;"
+} else {
+    $path = $path + ";$windowsJumpDir;"
+}
+ 
 [System.Environment]::SetEnvironmentVariable("Jump_Map", $jumpMapPath, [System.EnvironmentVariableTarget]::Machine)
 [System.Environment]::SetEnvironmentVariable("Path", $path, [System.EnvironmentVariableTarget]::Machine)
